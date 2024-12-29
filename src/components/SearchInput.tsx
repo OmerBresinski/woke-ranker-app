@@ -3,7 +3,7 @@ import { SearchIcon } from "./SearchIcon";
 
 interface SearchInputProps {
   value: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClear: () => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => void;

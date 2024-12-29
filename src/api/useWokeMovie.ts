@@ -2,19 +2,32 @@ import { useQuery } from "@tanstack/react-query";
 
 interface IUseWokeMovie {
   search: string;
+  wokeMeter: number;
 }
 
-export const useWokeMovie = ({ search }: IUseWokeMovie) => {
-  const { data, isLoading, isFetching, error, refetch } = useQuery({
-    queryKey: ["woke-movie", search],
-    queryFn: async ({ queryKey }) => {
-      const [, movieName] = queryKey;
-      await new Promise((resolve) => setTimeout(resolve, 6000));
+export interface GrokResponse {
+  movieName: string;
+  wokeScore: number;
+  summary: string;
+  headline: string;
+  poster: string;
+}
 
-      return { movieName };
-    },
-    enabled: false,
-  });
+export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
+  const { data, isLoading, isFetching, error, refetch } =
+    useQuery<GrokResponse>({
+      queryKey: ["woke-movie", search],
+      queryFn: async ({ queryKey }) => {
+        const [, movieName] = queryKey;
+        const response = await fetch(
+          `http://localhost:3000/${movieName}&wokeMeter=${wokeMeter}`
+        );
+        const json = await response.json();
+
+        return json;
+      },
+      enabled: false,
+    });
 
   return {
     data,

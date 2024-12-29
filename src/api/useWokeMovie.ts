@@ -20,7 +20,7 @@ export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
       queryFn: async ({ queryKey }) => {
         const [, movieName] = queryKey;
         const response = await fetch(
-          `http://localhost:3000/${movieName}?wokeMeter=${wokeMeter}`,
+          `${import.meta.env.VITE_API_URL}/${movieName}?wokeMeter=${wokeMeter}`,
           {
             headers: {
               "Content-Type": "application/json",

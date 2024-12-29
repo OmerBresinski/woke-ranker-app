@@ -21,6 +21,7 @@ export const SearchInput = ({
       type="text"
       value={value}
       onChange={onChange}
+      maxLength={100}
       placeholder="Search for a movie"
       className="pl-5 pr-20 py-2.5 focus:outline-none font-sans text-base rounded-full border-stone-200 w-full"
     />

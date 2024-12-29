@@ -7,8 +7,8 @@ import { Movie } from "./components/Movie";
 import { Typewriter } from "./components/Typewriter";
 
 function App() {
-  const [wokeMeter, setWokeMeter] = useState(3);
   const [search, setSearch] = useState("");
+  const [wokeMeter, setWokeMeter] = useState(3);
   const { data, isFetching, fetchMovie } = useWokeMovie({ search, wokeMeter });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {

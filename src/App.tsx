@@ -62,7 +62,6 @@ function App() {
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <Slider value={wokeMeter} onChange={handleWokeMeterChange} />
             <BrandIcon />
             <div className="max-w-3xl pt-2 mt-14 mb-[34px]">
               <AnimatePresence mode="wait">

@@ -9,6 +9,7 @@ import { Slider } from "./components/Slider";
 import { motion } from "motion/react";
 import { Navbar } from "./components/Navbar";
 import { Movie } from "./components/Movie";
+import { isMobile } from "./utils/isMobile";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -52,18 +53,24 @@ function App() {
         data ? "bg-white" : "bg-primary"
       }`}
     >
-      <Slider value={wokeMeter} onChange={handleWokeMeterChange} />
+      <Slider
+        value={wokeMeter}
+        onChange={handleWokeMeterChange}
+        hasData={isFetching || !!data}
+      />
       <AnimatePresence>
         {!isFetching && !data ? (
           <motion.form
             onSubmit={handleSubmit}
-            className="w-full h-full flex flex-col items-center pt-32 font-serif"
+            className={`w-full h-full flex flex-col items-center ${
+              isMobile ? "pt-[147px]" : "pt-32"
+            } font-serif ${isMobile ? "px-[42px]" : "px-0"}`}
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
             <BrandIcon />
-            <div className="max-w-3xl pt-2 mt-14 mb-[34px]">
+            <div className="text-center max-w-3xl pt-2 mt-14 mb-[34px]">
               <AnimatePresence mode="wait">
                 {!isFetching && !data && (
                   <Typewriter onClick={handleTypewriterClick} />
@@ -83,7 +90,9 @@ function App() {
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col pt-5 px-14 w-full gap-[60px]"
+            className={`flex flex-col pt-5 ${
+              isMobile ? "px-11" : "px-14"
+            } w-full ${isMobile ? "gap-[10px]" : "gap-[60px]"}`}
           >
             <Navbar
               handleClearSearchClick={handleClearSearchClick}
@@ -98,7 +107,7 @@ function App() {
               </div>
             )}
             {!!data && (
-              <div className="px-60">
+              <div className={`${isMobile ? "px-0" : "px-60"}`}>
                 <Movie
                   headline={data.headline}
                   movieName={data.movieName || form.search}

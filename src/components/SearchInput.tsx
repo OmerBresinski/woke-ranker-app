@@ -1,3 +1,4 @@
+import { isMobile } from "../utils/isMobile";
 import { ClearIcon } from "./ClearIcon";
 import { SearchIcon } from "./SearchIcon";
 
@@ -16,7 +17,7 @@ export const SearchInput = ({
   onSubmit,
   isDisabled,
 }: SearchInputProps) => (
-  <div className="relative w-5/12">
+  <div className={`relative ${isMobile ? "w-full" : "w-5/12"}`}>
     <input
       type="text"
       value={value}

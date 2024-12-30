@@ -98,15 +98,17 @@ function App() {
               </div>
             )}
             {!!data && (
-              <Movie
-                headline={data.headline}
-                movieName={data.movieName || form.search}
-                summary={data.summary}
-                wokeScore={data.wokeScore}
-                poster={data.poster}
-                rating={data.rating}
-                released={data.released}
-              />
+              <div className="px-60">
+                <Movie
+                  headline={data.headline}
+                  movieName={data.movieName || form.search}
+                  summary={data.summary}
+                  wokeScore={data.wokeScore}
+                  poster={data.poster}
+                  rating={data.rating}
+                  released={data.released}
+                />
+              </div>
             )}
           </motion.div>
         )}

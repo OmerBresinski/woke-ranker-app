@@ -20,7 +20,10 @@ export const Navbar = ({
 }: NavbarProps) => {
   return (
     <div className="flex justify-between items-center">
-      <div className="min-w-1/5">
+      <div
+        className="min-w-1/5 hover:cursor-pointer"
+        onClick={handleClearSearchClick}
+      >
         <BrandIcon variant="mini" />
       </div>
       <form onSubmit={handleSubmit} className="flex justify-center w-full">

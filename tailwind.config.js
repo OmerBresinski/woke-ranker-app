@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         martian: ["Martian Mono", "sans-serif"],
         inria: ["Inria Sans", "sans"],
+        inter: ["Inter", "sans-serif"],
       },
       backgroundImage: {
         slider: "linear-gradient(90deg, #99fdc1 0%, #1ab3b4 100%)",

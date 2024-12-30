@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { GrokResponse } from "../api/useWokeMovie";
-import { Stars } from "./Stars";
+import { WokeScore } from "./WokeScore";
 
 type MovieProps = GrokResponse;
 
@@ -16,21 +16,23 @@ export const Movie = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="flex flex-col gap-8 items-center"
+      className="w-full rounded-lg border border-[#D4D3DC] p-[30px]"
     >
-      <p className="text-lg font-thin">{headline}</p>
-      <div className="flex gap-5">
-        <img src={poster} className="w-40 rounded-md" />
+      <div className="flex gap-6 font-martian">
+        <img src={poster} className="w-[190px] rounded-md" />
         <div className="flex flex-col justify-between pb-2">
-          <div className="flex flex-col gap-2">
-            <p className="text-xl font-bold">{movieName}</p>
-            <p className="text-sm">{summary}</p>
-          </div>
-          <div>
-            <p className="text-lg font-bold">Woke Score</p>
-            <div className="flex gap-1">
-              <Stars amount={wokeScore} />
+          <div className="flex flex-col">
+            <div className="flex justify-between w-full">
+              <div className="flex flex-col gap-3">
+                <p className="text-2xl font-medium">{movieName}</p>
+                <p className="text-base text-[#8C8C93] font-normal">2001</p>
+              </div>
+              <WokeScore value={wokeScore} />
             </div>
+            <p className="text-base font-semibold font-inter mt-[13px] mb-[15px]">
+              {headline}
+            </p>
+            <p className="text-base font-inter">{summary}</p>
           </div>
         </div>
       </div>

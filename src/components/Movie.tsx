@@ -21,7 +21,9 @@ export const Movie = ({
       className="w-full rounded-lg border border-[#D4D3DC] p-[30px]"
     >
       <div className="flex gap-6 font-martian">
-        <img src={poster} className="w-[190px] rounded-md" />
+        <div className="min-w-[190px]">
+          <img src={poster} className="w-[190px] rounded-md" />
+        </div>
         <div className="flex flex-col justify-between pb-2">
           <div className="flex flex-col">
             <div className="flex justify-between w-full">

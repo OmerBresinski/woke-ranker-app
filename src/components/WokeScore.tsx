@@ -6,7 +6,7 @@ interface WokeScoreProps {
 
 export const WokeScore = ({ value }: WokeScoreProps) => {
   return (
-    <div className="flex flex-col gap-2 w-[196px]">
+    <div className="flex flex-col gap-1 w-[196px]">
       <p className="text-base font-normal text-[#8C8C93] font-inria">
         Woke Meter
       </p>

@@ -22,8 +22,8 @@ export const SearchInput = ({
       value={value}
       onChange={onChange}
       maxLength={100}
-      placeholder="Search for a movie"
-      className="pl-5 pr-20 py-2.5 focus:outline-none font-sans text-base rounded-full border-stone-200 w-full"
+      placeholder="Tell me of the movie you wish to judge but dare not ask"
+      className="pl-5 pr-20 py-2.5 focus:outline-none font-sans text-base rounded-full border border-[#D9D9D9] w-full placeholder:font-inria placeholder:text-[#B3B3B3] leading-4"
     />
     {value && (
       <div
@@ -36,7 +36,7 @@ export const SearchInput = ({
     <button
       type="submit"
       disabled={isDisabled}
-      className="absolute right-2 top-1 bg-black p-2 rounded-full hover:bg-gray-700 hover:cursor-pointer disabled:bg-gray-300"
+      className="absolute right-2 top-1 p-2 rounded-full hover:cursor-pointer"
       onClick={onSubmit}
     >
       <SearchIcon />

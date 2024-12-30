@@ -28,7 +28,9 @@ export const Typewriter = ({ onClick }: TypewriterProps) => {
 
   return (
     <p
-      className={`text-3xl ${isDelay && "hover:cursor-pointer"}`}
+      className={`text-2xl ${
+        isDelay && "hover:cursor-pointer"
+      } font-martian font-normal tracking-wider`}
       onClick={handleClick}
     >
       {text}
@@ -36,7 +38,7 @@ export const Typewriter = ({ onClick }: TypewriterProps) => {
         words={[]}
         loop={0}
         cursor
-        cursorStyle="_"
+        cursorStyle="|"
         typeSpeed={50}
         delaySpeed={2000}
       />

@@ -5,6 +5,7 @@ import { AnimatePresence } from "motion/react";
 import { useWokeMovie } from "./api/useWokeMovie";
 import { Movie } from "./components/Movie";
 import { Typewriter } from "./components/Typewriter";
+import { BrandIcon } from "./components/BranIcon";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -38,12 +39,16 @@ function App() {
     <div className="relative h-screen w-screen">
       <form
         onSubmit={handleSubmit}
-        className="bg-primary w-full h-full flex flex-col items-center pt-24 font-serif gap-4"
+        className="bg-primary w-full h-full flex flex-col items-center pt-32 font-serif"
       >
-        <img src="/logo.png" className="w-44 grayscale"></img>
-        <p className="text-xl">
-          Tell me of the movie you wish to judge but dare not ask
-        </p>
+        <BrandIcon />
+        <div className="max-w-3xl pt-2 mt-14 mb-[34px]">
+          <AnimatePresence mode="wait">
+            {!isFetching && !data && (
+              <Typewriter onClick={handleTypewriterClick} />
+            )}
+          </AnimatePresence>
+        </div>
         <SearchInput
           value={search}
           onChange={handleSearchChange}
@@ -51,22 +56,17 @@ function App() {
           onSubmit={handleSubmit}
           isDisabled={isFetching || search === data?.movieName}
         />
-        <AnimatePresence mode="wait">
-          <div className="max-w-3xl pt-2">
-            {!isFetching && !data && (
-              <Typewriter onClick={handleTypewriterClick} />
-            )}
-            {isFetching && <LoadingMessages />}
-            {!isFetching && data && (
-              <Movie
-                headline={data.headline}
-                movieName={data.movieName}
-                summary={data.summary}
-                wokeScore={data.wokeScore}
-                poster={data.poster}
-              />
-            )}
-          </div>
+        {isFetching && <LoadingMessages />}
+        <AnimatePresence>
+          {!isFetching && data && (
+            <Movie
+              headline={data.headline}
+              movieName={data.movieName}
+              summary={data.summary}
+              wokeScore={data.wokeScore}
+              poster={data.poster}
+            />
+          )}
         </AnimatePresence>
       </form>
       <input

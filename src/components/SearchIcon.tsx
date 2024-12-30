@@ -1,12 +1,20 @@
 export const SearchIcon = () => {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="stroke-[#1E1E1E] hover:stroke-gray-500"
+      stroke="currentColor"
+    >
       <path
+        d="M14 14L11.1 11.1M12.6667 7.33333C12.6667 10.2789 10.2789 12.6667 7.33333 12.6667C4.38781 12.6667 2 10.2789 2 7.33333C2 4.38781 4.38781 2 7.33333 2C10.2789 2 12.6667 4.38781 12.6667 7.33333Z"
+        strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="2"
-        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-      ></path>
+      />
     </svg>
   );
 };

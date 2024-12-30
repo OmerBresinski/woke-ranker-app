@@ -4,7 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#F1EEE6",
+        primary: "#FFFEFC",
+      },
+      fontFamily: {
+        martian: ["Martian Mono", "sans-serif"],
+        inria: ["Inria Sans", "sans"],
       },
     },
   },

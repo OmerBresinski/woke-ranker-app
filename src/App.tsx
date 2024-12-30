@@ -41,7 +41,11 @@ function App() {
   };
 
   return (
-    <div className="relative h-screen w-screen bg-primary">
+    <div
+      className={`relative h-screen w-screen ${
+        data ? "bg-white" : "bg-primary"
+      }`}
+    >
       <Slider value={wokeMeter} onChange={handleWokeMeterChange} />
       <AnimatePresence>
         {!isFetching && !data ? (

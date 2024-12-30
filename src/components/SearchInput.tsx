@@ -28,18 +28,20 @@ export const SearchInput = ({
     {value && (
       <div
         onClick={onClear}
-        className="absolute right-11 top-1 p-2 hover:cursor-pointer"
+        className="absolute right-2 top-1 p-2 hover:cursor-pointer"
       >
         <ClearIcon />
       </div>
     )}
-    <button
-      type="submit"
-      disabled={isDisabled}
-      className="absolute right-2 top-1 p-2 rounded-full hover:cursor-pointer"
-      onClick={onSubmit}
-    >
-      <SearchIcon />
-    </button>
+    {value.length === 0 && (
+      <button
+        type="submit"
+        disabled={isDisabled}
+        className="absolute right-2 top-1 p-2 rounded-full hover:cursor-pointer"
+        onClick={onSubmit}
+      >
+        <SearchIcon />
+      </button>
+    )}
   </div>
 );

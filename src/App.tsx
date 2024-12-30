@@ -3,10 +3,12 @@ import { LoadingMessages } from "./components/LoadingMessages";
 import { SearchInput } from "./components/SearchInput";
 import { AnimatePresence } from "motion/react";
 import { useWokeMovie } from "./api/useWokeMovie";
-import { Movie } from "./components/Movie";
 import { Typewriter } from "./components/Typewriter";
 import { BrandIcon } from "./components/BranIcon";
 import { Slider } from "./components/Slider";
+import { motion } from "motion/react";
+import { Navbar } from "./components/Navbar";
+import { Movie } from "./components/Movie";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -39,44 +41,65 @@ function App() {
   };
 
   return (
-    <div className="relative h-screen w-screen">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-primary w-full h-full flex flex-col items-center pt-32 font-serif"
-      >
-        <Slider value={wokeMeter} onChange={handleWokeMeterChange} />
-        <BrandIcon />
-        <div className="max-w-3xl pt-2 mt-14 mb-[34px]">
-          <AnimatePresence mode="wait">
-            {!isFetching && !data && (
-              <Typewriter onClick={handleTypewriterClick} />
-            )}
-          </AnimatePresence>
-        </div>
-        <SearchInput
-          value={search}
-          onChange={handleSearchChange}
-          onClear={handleClearSearchClick}
-          onSubmit={handleSubmit}
-          isDisabled={isFetching || search === data?.movieName}
-        />
-        {isFetching && (
-          <div className="mt-4">
-            <LoadingMessages />
-          </div>
-        )}
-        <AnimatePresence>
-          {!isFetching && data && (
-            <Movie
-              headline={data.headline}
-              movieName={data.movieName}
-              summary={data.summary}
-              wokeScore={data.wokeScore}
-              poster={data.poster}
+    <div className="relative h-screen w-screen bg-primary">
+      <Slider value={wokeMeter} onChange={handleWokeMeterChange} />
+      <AnimatePresence>
+        {!isFetching && !data ? (
+          <motion.form
+            onSubmit={handleSubmit}
+            className="w-full h-full flex flex-col items-center pt-32 font-serif"
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <Slider value={wokeMeter} onChange={handleWokeMeterChange} />
+            <BrandIcon />
+            <div className="max-w-3xl pt-2 mt-14 mb-[34px]">
+              <AnimatePresence mode="wait">
+                {!isFetching && !data && (
+                  <Typewriter onClick={handleTypewriterClick} />
+                )}
+              </AnimatePresence>
+            </div>
+            <SearchInput
+              value={search}
+              onChange={handleSearchChange}
+              onClear={handleClearSearchClick}
+              onSubmit={handleSubmit}
+              isDisabled={isFetching}
             />
-          )}
-        </AnimatePresence>
-      </form>
+            {isFetching && (
+              <div className="mt-4">
+                <LoadingMessages />
+              </div>
+            )}
+          </motion.form>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col pt-5 px-14 w-full gap-[60px]"
+          >
+            <Navbar
+              handleClearSearchClick={handleClearSearchClick}
+              handleSearchChange={handleClearSearchClick}
+              handleSubmit={handleSubmit}
+              isFetching={isFetching}
+              search={search}
+            />
+            {!!data && (
+              <Movie
+                headline={data.headline}
+                movieName={data.movieName}
+                summary={data.summary}
+                wokeScore={data.wokeScore}
+                poster={data.poster}
+              />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

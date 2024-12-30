@@ -78,11 +78,6 @@ function App() {
               onSubmit={handleSubmit}
               isDisabled={isFetching}
             />
-            {isFetching && (
-              <div className="mt-4">
-                <LoadingMessages />
-              </div>
-            )}
           </motion.form>
         ) : (
           <motion.div
@@ -98,6 +93,11 @@ function App() {
               isFetching={isFetching}
               search={search}
             />
+            {isFetching && (
+              <div className="flex w-full justify-center mt-6 font-martian text-lg">
+                <LoadingMessages />
+              </div>
+            )}
             {!!data && (
               <Movie
                 headline={data.headline}

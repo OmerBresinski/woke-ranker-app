@@ -33,6 +33,7 @@ export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
 
         return json;
       },
+      refetchOnWindowFocus: false,
       enabled: !!search,
     });
 

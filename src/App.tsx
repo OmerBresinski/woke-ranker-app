@@ -105,6 +105,8 @@ function App() {
                 summary={data.summary}
                 wokeScore={data.wokeScore}
                 poster={data.poster}
+                rating={data.rating}
+                released={data.released}
               />
             )}
           </motion.div>

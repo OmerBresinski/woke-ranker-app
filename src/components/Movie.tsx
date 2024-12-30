@@ -10,8 +10,9 @@ export const Movie = ({
   summary,
   headline,
   poster,
+  rating,
+  released,
 }: MovieProps) => {
-  console.log({ movieName });
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,7 +27,11 @@ export const Movie = ({
             <div className="flex justify-between w-full">
               <div className="flex flex-col gap-3">
                 <p className="text-2xl font-medium">{movieName}</p>
-                <p className="text-base text-[#8C8C93] font-normal">2001</p>
+                <p className="text-base text-[#8C8C93] font-normal">
+                  {new Date(released).getFullYear()}
+                  <span className="mx-1">·</span>
+                  {rating}
+                </p>
               </div>
               <WokeScore value={wokeScore} />
             </div>

@@ -11,6 +11,8 @@ export interface GrokResponse {
   summary: string;
   headline: string;
   poster: string;
+  rating: string;
+  released: string;
 }
 
 export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {

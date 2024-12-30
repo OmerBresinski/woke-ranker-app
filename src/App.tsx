@@ -13,7 +13,11 @@ import { Movie } from "./components/Movie";
 function App() {
   const [search, setSearch] = useState("");
   const [wokeMeter, setWokeMeter] = useState(3);
-  const { data, isFetching, fetchMovie } = useWokeMovie({ search, wokeMeter });
+  const [form, setForm] = useState({ search, wokeMeter });
+  const { data, isFetching } = useWokeMovie({
+    search: form.search,
+    wokeMeter: form.wokeMeter,
+  });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -21,23 +25,25 @@ function App() {
 
   const handleClearSearchClick = () => {
     setSearch("");
+    setForm({ search: "", wokeMeter });
   };
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => {
     e.preventDefault();
-    fetchMovie();
+    setForm({ search, wokeMeter });
   };
 
   const handleTypewriterClick = (movie: string) => {
-    // fetchMovie({ queryKey: ["woke-movie", { search: movie, wokeMeter }] });
     setSearch(movie);
+    setForm({ search: movie, wokeMeter });
   };
 
   const handleWokeMeterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // fetchMovie({ queryKey: ["woke-movie", { search, wokeMeter }] });
-    setWokeMeter(Number(e.target.value));
+    const value = Number(e.target.value);
+    setWokeMeter(Number(value));
+    setForm({ search, wokeMeter: Number(value) });
   };
 
   return (
@@ -87,7 +93,7 @@ function App() {
           >
             <Navbar
               handleClearSearchClick={handleClearSearchClick}
-              handleSearchChange={handleClearSearchClick}
+              handleSearchChange={handleSearchChange}
               handleSubmit={handleSubmit}
               isFetching={isFetching}
               search={search}
@@ -95,7 +101,7 @@ function App() {
             {!!data && (
               <Movie
                 headline={data.headline}
-                movieName={data.movieName}
+                movieName={data.movieName || form.search}
                 summary={data.summary}
                 wokeScore={data.wokeScore}
                 poster={data.poster}

@@ -31,7 +31,7 @@ export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
 
         return json;
       },
-      enabled: false,
+      enabled: !!search,
     });
 
   return {

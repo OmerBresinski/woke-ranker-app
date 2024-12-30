@@ -11,6 +11,7 @@ export const Movie = ({
   headline,
   poster,
 }: MovieProps) => {
+  console.log({ movieName });
   return (
     <motion.div
       initial={{ opacity: 0 }}

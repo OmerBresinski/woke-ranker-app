@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link
@@ -15,6 +15,38 @@
       rel="stylesheet"
     />
     <title>Vite + React + TS</title>
+    <style>
+      input[type="range"] {
+        -webkit-appearance: none;
+        cursor: pointer;
+      }
+      input[type="range"]::-webkit-slider-runnable-track {
+        background: linear-gradient(to right, #99fdc1, #1ab3b4);
+        height: 5px;
+        border-radius: 4px;
+      }
+      input[type="range"]::-moz-range-track {
+        background: linear-gradient(to right, #99fdc1, #1ab3b4);
+        height: 5px;
+        border-radius: 4px;
+      }
+      input[type="range"]::-ms-track {
+        background: linear-gradient(to right, #99fdc1, #1ab3b4);
+        height: 5px;
+        border-radius: 4px;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        box-sizing: border-box;
+        width: 13px;
+        height: 13px;
+        background: #ffffff;
+        border: 3px solid #1cb5b4;
+        border-radius: 50%;
+        transform: translate(0px, -3px);
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

@@ -6,6 +6,7 @@ import { useWokeMovie } from "./api/useWokeMovie";
 import { Movie } from "./components/Movie";
 import { Typewriter } from "./components/Typewriter";
 import { BrandIcon } from "./components/BranIcon";
+import { Slider } from "./components/Slider";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -28,10 +29,12 @@ function App() {
   };
 
   const handleTypewriterClick = (movie: string) => {
+    // fetchMovie({ queryKey: ["woke-movie", { search: movie, wokeMeter }] });
     setSearch(movie);
   };
 
   const handleWokeMeterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // fetchMovie({ queryKey: ["woke-movie", { search, wokeMeter }] });
     setWokeMeter(Number(e.target.value));
   };
 
@@ -41,6 +44,7 @@ function App() {
         onSubmit={handleSubmit}
         className="bg-primary w-full h-full flex flex-col items-center pt-32 font-serif"
       >
+        <Slider value={wokeMeter} onChange={handleWokeMeterChange} />
         <BrandIcon />
         <div className="max-w-3xl pt-2 mt-14 mb-[34px]">
           <AnimatePresence mode="wait">
@@ -56,7 +60,11 @@ function App() {
           onSubmit={handleSubmit}
           isDisabled={isFetching || search === data?.movieName}
         />
-        {isFetching && <LoadingMessages />}
+        {isFetching && (
+          <div className="mt-4">
+            <LoadingMessages />
+          </div>
+        )}
         <AnimatePresence>
           {!isFetching && data && (
             <Movie
@@ -69,14 +77,6 @@ function App() {
           )}
         </AnimatePresence>
       </form>
-      <input
-        type="number"
-        max="3"
-        min="1"
-        className="absolute top-0 left-0"
-        value={wokeMeter}
-        onChange={handleWokeMeterChange}
-      ></input>
     </div>
   );
 }

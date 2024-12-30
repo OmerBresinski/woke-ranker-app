@@ -10,6 +10,9 @@ export default {
         martian: ["Martian Mono", "sans-serif"],
         inria: ["Inria Sans", "sans"],
       },
+      backgroundImage: {
+        slider: "linear-gradient(90deg, #99fdc1 0%, #1ab3b4 100%)",
+      },
     },
   },
   plugins: [],

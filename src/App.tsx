@@ -49,9 +49,7 @@ function App() {
 
   return (
     <div
-      className={`relative h-screen w-screen ${
-        data ? "bg-white" : "bg-primary"
-      }`}
+      className={`relative h-full w-screen ${data ? "bg-white" : "bg-primary"}`}
     >
       <Slider
         value={wokeMeter}

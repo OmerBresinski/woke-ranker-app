@@ -9,23 +9,28 @@ export const PopularMoviesCarousel = ({ onClick }: PopularMovieResponse) => {
   const { popularMovies } = usePopularMovies();
 
   return popularMovies ? (
-    <motion.div
-      exit={{ opacity: 0 }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex gap-5 overflow-x-auto box-border mb-[32px] px-[32px]"
-    >
-      {popularMovies
-        .filter(({ poster }) => poster !== "N/A")
-        .map((movie) => (
-          <img
-            key={movie.name}
-            src={movie.poster}
-            alt={movie.name}
-            onClick={() => onClick(movie.name)}
-            className="h-[230px] w-full object-cover rounded-[4px] hover:cursor-pointer"
-          />
-        ))}
-    </motion.div>
+    <div className="flex flex-col gap-6">
+      <motion.p className="font-inria font-bold text-lg px-8">
+        Popular Movies
+      </motion.p>
+      <motion.div
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex gap-5 overflow-x-auto box-border mb-8 px-8"
+      >
+        {popularMovies
+          .filter(({ poster }) => poster !== "N/A")
+          .map((movie) => (
+            <img
+              key={movie.name}
+              src={movie.poster}
+              alt={movie.name}
+              onClick={() => onClick(movie.name)}
+              className="h-[230px] w-full object-cover rounded-[4px] hover:cursor-pointer"
+            />
+          ))}
+      </motion.div>
+    </div>
   ) : null;
 };

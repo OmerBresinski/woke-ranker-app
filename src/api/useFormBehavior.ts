@@ -8,7 +8,7 @@ export const useFormBehavior = () => {
   const { movieName } = useMovieNameFromUrl();
   const [search, setSearch] = useState(movieName || "");
   const [wokeMeter, setWokeMeter] = useState(
-    +(searchParams.get("wokeMeter") || 1)
+    +(searchParams.get("wokeMeter") || DEFAULT_WOKE_METER)
   );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,19 +17,19 @@ export const useFormBehavior = () => {
 
   const handleClearSearchClick = () => {
     setSearch("");
-    navigate(`/?wokeMeter=${wokeMeter || 1}`, { viewTransition: true });
+    navigate(`/?wokeMeter=${wokeMeter || 1}`);
   };
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => {
     e.preventDefault();
-    navigate(`/${search}?wokeMeter=${wokeMeter}`, { viewTransition: true });
+    navigate(`/${search}?wokeMeter=${wokeMeter}`);
   };
 
   const handleTypewriterClick = (movie: string) => {
     setSearch(movie);
-    navigate(`/${movie}?wokeMeter=${wokeMeter}`, { viewTransition: true });
+    navigate(`/${movie}?wokeMeter=${wokeMeter}`);
   };
 
   const handleWokeMeterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,7 @@ export const useFormBehavior = () => {
 
   const handleSelectPopularMovie = (movie: string) => {
     setSearch(movie);
-    navigate(`/${movie}?wokeMeter=${wokeMeter}`, { viewTransition: true });
+    navigate(`/${movie}?wokeMeter=${wokeMeter}`);
   };
 
   return {
@@ -54,3 +54,5 @@ export const useFormBehavior = () => {
     handleSelectPopularMovie,
   };
 };
+
+const DEFAULT_WOKE_METER = 3;

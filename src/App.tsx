@@ -70,6 +70,7 @@ function App() {
             }`}
           >
             <motion.form
+              action="."
               onSubmit={handleSubmit}
               className={`w-full flex flex-col items-center ${
                 isMobile ? "overflow-hidden pt-[120px] pb-8" : "pt-32 pb-8"

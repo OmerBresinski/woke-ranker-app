@@ -9,7 +9,6 @@ export const usePopularMovies = () => {
   const { data, isLoading, isFetching, error } = useQuery<
     PopularMovieResponse[]
   >({
-    staleTime: Infinity,
     queryKey: ["popular-movies"],
     queryFn: async () => {
       const response = await fetch(`${import.meta.env.VITE_API_URL}popular`, {
@@ -21,6 +20,8 @@ export const usePopularMovies = () => {
 
       return json;
     },
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
   });
 
   return {

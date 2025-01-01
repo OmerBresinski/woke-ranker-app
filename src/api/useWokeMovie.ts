@@ -1,12 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-
-interface IUseWokeMovie {
-  search: string;
-  wokeMeter: number;
-}
+import { useMovieNameFromUrl } from "./useMovieNameFromUrl";
 
 export interface GrokResponse {
-  movieName: string;
+  name: string;
   wokeScore: number;
   summary: string;
   headline: string;
@@ -15,10 +11,15 @@ export interface GrokResponse {
   released: string;
 }
 
-export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
+interface UseWokeMovieProps {
+  wokeMeter: number;
+}
+
+export const useWokeMovie = ({ wokeMeter }: UseWokeMovieProps) => {
+  const { movieName } = useMovieNameFromUrl();
   const { data, isLoading, isFetching, error, refetch } =
     useQuery<GrokResponse>({
-      queryKey: ["woke-movie", search, wokeMeter],
+      queryKey: ["woke-movie", movieName, wokeMeter],
       queryFn: async ({ queryKey }) => {
         const [, search, wokeMeter] = queryKey;
         const response = await fetch(
@@ -35,15 +36,7 @@ export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
       },
       refetchOnWindowFocus: false,
       staleTime: Infinity,
-      enabled: !!search,
     });
 
-  return {
-    movie: data,
-    error,
-    isLoading,
-    isFetching,
-    fetchMovie: refetch,
-    currentMovie: search,
-  };
+  return { movie: data, isLoading, isFetching, error, fetchMovie: refetch };
 };

@@ -17,7 +17,11 @@ export const SearchInput = ({
   onSubmit,
   isDisabled,
 }: SearchInputProps) => (
-  <div className={`relative ${isMobile ? "w-full" : "w-5/12"}`}>
+  <form
+    action="."
+    onSubmit={onSubmit}
+    className={`relative ${isMobile ? "w-full" : "w-5/12"}`}
+  >
     <input
       type="search"
       value={value}
@@ -44,5 +48,5 @@ export const SearchInput = ({
         <SearchIcon />
       </button>
     )}
-  </div>
+  </form>
 );

@@ -116,7 +116,7 @@ function App() {
               isFetching={isFetching}
               search={search}
             />
-            {isFetching && (
+            {isFetching && !movie && (
               <div className="flex w-full justify-center mt-6 font-martian text-lg">
                 <LoadingMessages />
               </div>

@@ -38,7 +38,7 @@ export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
     });
 
   return {
-    data,
+    movie: data,
     error,
     isLoading,
     isFetching,

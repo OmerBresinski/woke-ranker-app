@@ -10,12 +10,13 @@ import { motion } from "motion/react";
 import { Navbar } from "./components/Navbar";
 import { Movie } from "./components/Movie";
 import { isMobile } from "./utils/isMobile";
+import { PopularMoviesCarousel } from "./components/PopularMoviesCarousel";
 
 function App() {
   const [search, setSearch] = useState("");
   const [wokeMeter, setWokeMeter] = useState(1);
   const [form, setForm] = useState({ search, wokeMeter });
-  const { data, isFetching } = useWokeMovie({
+  const { movie, isFetching } = useWokeMovie({
     search: form.search,
     wokeMeter: form.wokeMeter,
   });
@@ -47,42 +48,54 @@ function App() {
     setForm({ search, wokeMeter: Number(value) });
   };
 
+  const handleSelectPopularMovie = (movie: string) => {
+    setSearch(movie);
+    setForm({ search: movie, wokeMeter });
+  };
+
   return (
     <div
-      className={`relative h-full w-screen ${data ? "bg-white" : "bg-primary"}`}
+      className={`relative h-dvh w-screen ${movie ? "bg-white" : "bg-primary"}`}
     >
       <Slider
         value={wokeMeter}
         onChange={handleWokeMeterChange}
-        hasData={isFetching || !!data}
+        hasData={isFetching || !!movie}
       />
       <AnimatePresence>
-        {!isFetching && !data ? (
-          <motion.form
-            onSubmit={handleSubmit}
-            className={`w-full h-full flex flex-col items-center ${
-              isMobile ? "pt-[147px]" : "pt-32"
-            } font-serif ${isMobile ? "px-[42px]" : "px-0"}`}
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+        {!isFetching && !movie ? (
+          <div
+            className={`flex flex-col justify-between h-full ${
+              isMobile && "overflow-hidden"
+            }`}
           >
-            <BrandIcon />
-            <div className="text-center max-w-3xl pt-2 mt-14 mb-[34px]">
-              <AnimatePresence mode="wait">
-                {!isFetching && !data && (
-                  <Typewriter onClick={handleTypewriterClick} />
-                )}
-              </AnimatePresence>
-            </div>
-            <SearchInput
-              value={search}
-              onChange={handleSearchChange}
-              onClear={handleClearSearchClick}
+            <motion.form
               onSubmit={handleSubmit}
-              isDisabled={isFetching}
-            />
-          </motion.form>
+              className={`w-full h-full flex flex-col items-center ${
+                isMobile ? "overflow-hidden pt-[147px] pb-8" : "pt-32 pb-8"
+              } font-serif ${isMobile ? "px-[42px]" : "px-0"}`}
+              initial={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <BrandIcon />
+              <div className="text-center max-w-3xl pt-2 mt-14 mb-[34px]">
+                <AnimatePresence mode="wait">
+                  {!isFetching && !movie && (
+                    <Typewriter onClick={handleTypewriterClick} />
+                  )}
+                </AnimatePresence>
+              </div>
+              <SearchInput
+                value={search}
+                onChange={handleSearchChange}
+                onClear={handleClearSearchClick}
+                onSubmit={handleSubmit}
+                isDisabled={isFetching}
+              />
+            </motion.form>
+            <PopularMoviesCarousel onClick={handleSelectPopularMovie} />
+          </div>
         ) : (
           <motion.div
             initial={{ opacity: 0 }}
@@ -104,16 +117,16 @@ function App() {
                 <LoadingMessages />
               </div>
             )}
-            {!!data && (
+            {!!movie && (
               <div className={`${isMobile ? "px-0" : "px-60"}`}>
                 <Movie
-                  headline={data.headline}
-                  movieName={data.movieName || form.search}
-                  summary={data.summary}
-                  wokeScore={data.wokeScore}
-                  poster={data.poster}
-                  rating={data.rating}
-                  released={data.released}
+                  headline={movie.headline}
+                  movieName={movie.movieName || form.search}
+                  summary={movie.summary}
+                  wokeScore={movie.wokeScore}
+                  poster={movie.poster}
+                  rating={movie.rating}
+                  released={movie.released}
                 />
               </div>
             )}

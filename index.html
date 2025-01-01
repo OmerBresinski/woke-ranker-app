@@ -50,6 +50,16 @@
         transform: translate(0px, -3px);
         cursor: pointer;
       }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      /* Firefox */
+      html {
+        scrollbar-width: none;
+      }
+      body {
+        -ms-overflow-style: none; /* For Internet Explorer and Edge */
+      }
     </style>
   </head>
   <body>

@@ -8,7 +8,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Pages.Home />} />
         <Route path="/:movieName" element={<Pages.Movie />} />
-        {/* <Route index element={<Navigate to="/" replace />} /> */}
       </Routes>
     </AnimatePresence>
   );

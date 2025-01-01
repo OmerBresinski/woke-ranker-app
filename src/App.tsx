@@ -71,7 +71,7 @@ function App() {
           >
             <motion.form
               onSubmit={handleSubmit}
-              className={`w-full h-full flex flex-col items-center ${
+              className={`w-full flex flex-col items-center ${
                 isMobile ? "overflow-hidden pt-[147px] pb-8" : "pt-32 pb-8"
               } font-serif ${isMobile ? "px-[42px]" : "px-0"}`}
               initial={{ opacity: 0 }}

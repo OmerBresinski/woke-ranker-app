@@ -23,7 +23,7 @@ export const PopularMoviesCarousel = ({ onClick }: PopularMovieResponse) => {
             src={movie.poster}
             alt={movie.name}
             onClick={() => onClick(movie.name)}
-            className="w-[210px] object-cover rounded-[4px] hover:cursor-pointer"
+            className="h-[230px] w-full object-cover rounded-[4px] hover:cursor-pointer"
           />
         ))}
     </motion.div>

@@ -11,14 +11,17 @@ import { Navbar } from "./components/Navbar";
 import { Movie } from "./components/Movie";
 import { isMobile } from "./utils/isMobile";
 import { PopularMoviesCarousel } from "./components/PopularMoviesCarousel";
+import { useSearchParams } from "react-router-dom";
 
 function App() {
-  const [search, setSearch] = useState("");
-  const [wokeMeter, setWokeMeter] = useState(1);
-  const [form, setForm] = useState({ search, wokeMeter });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [wokeMeter, setWokeMeter] = useState(
+    +(searchParams.get("wokeMeter") || 1) || 1
+  );
   const { movie, isFetching } = useWokeMovie({
-    search: form.search,
-    wokeMeter: form.wokeMeter,
+    search: searchParams.get("search") || "",
+    wokeMeter: +(searchParams.get("wokeMeter") || 1) || 1,
   });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,30 +30,30 @@ function App() {
 
   const handleClearSearchClick = () => {
     setSearch("");
-    setForm({ search: "", wokeMeter });
+    setSearchParams("");
   };
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => {
     e.preventDefault();
-    setForm({ search, wokeMeter });
+    setSearchParams(`?search=${search}&wokeMeter=${wokeMeter}`);
   };
 
   const handleTypewriterClick = (movie: string) => {
     setSearch(movie);
-    setForm({ search: movie, wokeMeter });
+    setSearchParams(`?search=${movie}&wokeMeter=${wokeMeter}`);
   };
 
   const handleWokeMeterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     setWokeMeter(Number(value));
-    setForm({ search, wokeMeter: Number(value) });
+    setSearchParams(`?search=${search}&wokeMeter=${value}`);
   };
 
   const handleSelectPopularMovie = (movie: string) => {
     setSearch(movie);
-    setForm({ search: movie, wokeMeter });
+    setSearchParams(`?search=${movie}&wokeMeter=${wokeMeter}`);
   };
 
   return (
@@ -126,7 +129,9 @@ function App() {
               <div className={`${isMobile ? "px-0" : "px-60"}`}>
                 <Movie
                   headline={movie.headline}
-                  movieName={movie.movieName || form.search}
+                  movieName={
+                    movie.movieName || searchParams.get("search") || "N/A"
+                  }
                   summary={movie.summary}
                   wokeScore={movie.wokeScore}
                   poster={movie.poster}

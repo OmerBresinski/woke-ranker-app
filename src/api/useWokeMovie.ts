@@ -34,6 +34,7 @@ export const useWokeMovie = ({ search, wokeMeter }: IUseWokeMovie) => {
         return json;
       },
       refetchOnWindowFocus: false,
+      staleTime: Infinity,
       enabled: !!search,
     });
 

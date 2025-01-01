@@ -72,7 +72,7 @@ function App() {
             <motion.form
               onSubmit={handleSubmit}
               className={`w-full flex flex-col items-center ${
-                isMobile ? "overflow-hidden pt-[147px] pb-8" : "pt-32 pb-8"
+                isMobile ? "overflow-hidden pt-[135px] pb-8" : "pt-32 pb-8"
               } font-serif ${isMobile ? "px-[42px]" : "px-0"}`}
               initial={{ opacity: 0 }}
               exit={{ opacity: 0 }}

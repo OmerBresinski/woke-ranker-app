@@ -13,7 +13,7 @@ import { isMobile } from "./utils/isMobile";
 
 function App() {
   const [search, setSearch] = useState("");
-  const [wokeMeter, setWokeMeter] = useState(3);
+  const [wokeMeter, setWokeMeter] = useState(1);
   const [form, setForm] = useState({ search, wokeMeter });
   const { data, isFetching } = useWokeMovie({
     search: form.search,

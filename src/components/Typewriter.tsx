@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Typewriter as TW, useTypewriter } from "react-simple-typewriter";
+import { isMobile } from "../utils/isMobile";
 
 interface TypewriterProps {
   onClick: (movie: string) => void;
@@ -28,9 +29,11 @@ export const Typewriter = ({ onClick }: TypewriterProps) => {
 
   return (
     <p
-      className={`text-2xl ${
+      className={`${
         isDelay && "hover:cursor-pointer"
-      } font-martian font-normal tracking-wider`}
+      } font-martian font-normal tracking-wider
+      ${isMobile ? "text-lg" : "text-2xl"}
+      `}
       onClick={handleClick}
     >
       {text}

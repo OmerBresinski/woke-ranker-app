@@ -9,8 +9,8 @@ export const PopularMoviesCarousel = ({ onClick }: PopularMovieResponse) => {
   const { popularMovies } = usePopularMovies();
 
   return popularMovies ? (
-    <div className="flex flex-col gap-6">
-      <motion.p className="font-inria font-bold text-lg px-8">
+    <div className="flex flex-col gap-4">
+      <motion.p className="font-inria font-bold text-base px-8">
         Popular Movies
       </motion.p>
       <motion.div

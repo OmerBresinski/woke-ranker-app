@@ -17,7 +17,7 @@ interface UseWokeMovieProps {
 
 export const useWokeMovie = ({ wokeMeter }: UseWokeMovieProps) => {
   const { movieName } = useMovieNameFromUrl();
-  const { data, isLoading, isFetching, error, refetch } =
+  const { data, isLoading, isFetching, isError, error, refetch } =
     useQuery<GrokResponse>({
       queryKey: ["woke-movie", movieName, wokeMeter],
       queryFn: async ({ queryKey }) => {
@@ -30,13 +30,28 @@ export const useWokeMovie = ({ wokeMeter }: UseWokeMovieProps) => {
             },
           }
         );
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Movie not found");
+          } else if (response.status === 500) {
+            throw new Error("Server error");
+          }
+        }
         const json = await response.json();
 
         return json;
       },
       refetchOnWindowFocus: false,
       staleTime: Infinity,
+      retry: false,
     });
 
-  return { movie: data, isLoading, isFetching, error, fetchMovie: refetch };
+  return {
+    movie: data,
+    isLoading,
+    isFetching,
+    isError,
+    error,
+    fetchMovie: refetch,
+  };
 };

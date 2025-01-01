@@ -16,7 +16,7 @@ export const Movie = () => {
     handleWokeMeterChange,
     handleClearSearchClick,
   } = useFormBehavior();
-  const { movie, isFetching } = useWokeMovie({ wokeMeter });
+  const { movie, isFetching, isError, error } = useWokeMovie({ wokeMeter });
 
   return (
     <div className={`relative h-dvh w-screen bg-white`}>
@@ -40,7 +40,12 @@ export const Movie = () => {
           isFetching={isFetching}
           search={search}
         />
-        {isFetching && !movie && (
+        {isError && (
+          <div className="flex w-full justify-center mt-6 font-martian text-lg">
+            {(error as Error).message}
+          </div>
+        )}
+        {isFetching && !movie && !isError && (
           <div className="flex w-full justify-center mt-6 font-martian text-lg">
             <LoadingMessages />
           </div>

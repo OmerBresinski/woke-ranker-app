@@ -42,7 +42,7 @@ export const Navbar = ({
         <div className="min-w-15" />
       </div>
       {isMobile && (
-        <form onSubmit={handleSubmit} className="flex justify-center w-full">
+        <div className="flex justify-center w-full">
           <SearchInput
             value={search}
             onChange={handleSearchChange}
@@ -50,7 +50,7 @@ export const Navbar = ({
             onSubmit={handleSubmit}
             isDisabled={isFetching}
           />
-        </form>
+        </div>
       )}
     </>
   );

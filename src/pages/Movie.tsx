@@ -16,7 +16,7 @@ export const Movie = () => {
     handleWokeMeterChange,
     handleClearSearchClick,
   } = useFormBehavior();
-  const { movie, isFetching, isError, error } = useWokeMovie({ wokeMeter });
+  const { movie, isFetching, isError, error } = useWokeMovie();
 
   return (
     <div className={`relative h-dvh w-screen bg-white`}>

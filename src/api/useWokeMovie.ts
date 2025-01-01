@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMovieNameFromUrl } from "./useMovieNameFromUrl";
+import { useSliderContext } from "../context/SliderContext";
 
 export interface GrokResponse {
   name: string;
@@ -11,11 +12,8 @@ export interface GrokResponse {
   released: string;
 }
 
-interface UseWokeMovieProps {
-  wokeMeter: number;
-}
-
-export const useWokeMovie = ({ wokeMeter }: UseWokeMovieProps) => {
+export const useWokeMovie = () => {
+  const { wokeMeter } = useSliderContext();
   const { movieName } = useMovieNameFromUrl();
   const { data, isLoading, isFetching, isError, error, refetch } =
     useQuery<GrokResponse>({

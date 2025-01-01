@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMovieNameFromUrl } from "./useMovieNameFromUrl";
+import { useSliderContext } from "../context/SliderContext";
 
 export const useFormBehavior = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const { wokeMeter, setWokeMeter } = useSliderContext();
   const { movieName } = useMovieNameFromUrl();
   const [search, setSearch] = useState(movieName || "");
-  const [wokeMeter, setWokeMeter] = useState(
-    +(searchParams.get("wokeMeter") || DEFAULT_WOKE_METER)
-  );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -17,19 +15,19 @@ export const useFormBehavior = () => {
 
   const handleClearSearchClick = () => {
     setSearch("");
-    navigate(`/?wokeMeter=${wokeMeter || 1}`);
+    navigate(`/`);
   };
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => {
     e.preventDefault();
-    navigate(`/${search}?wokeMeter=${wokeMeter}`);
+    navigate(`/${search}`);
   };
 
   const handleTypewriterClick = (movie: string) => {
     setSearch(movie);
-    navigate(`/${movie}?wokeMeter=${wokeMeter}`);
+    navigate(`/${movie}`);
   };
 
   const handleWokeMeterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +37,7 @@ export const useFormBehavior = () => {
 
   const handleSelectPopularMovie = (movie: string) => {
     setSearch(movie);
-    navigate(`/${movie}?wokeMeter=${wokeMeter}`);
+    navigate(`/${movie}`);
   };
 
   return {
@@ -54,5 +52,3 @@ export const useFormBehavior = () => {
     handleSelectPopularMovie,
   };
 };
-
-const DEFAULT_WOKE_METER = 3;

@@ -21,7 +21,7 @@ export const Movie = ({
         <WokeScore value={wokeScore} variant="mini" />
       </div>
       <div className="flex flex-col gap-1.5 font-martian">
-        <p className="text-lg font-medium cap capitalize">{movieName}</p>
+        <p className="text-lg font-medium capitalize">{movieName}</p>
         <p className="text-sm text-[#8C8C93] font-normal">
           {new Date(released).getFullYear()}
           <span className="mx-1">·</span>
@@ -48,7 +48,7 @@ export const Movie = ({
           <div className="flex flex-col">
             <div className="flex justify-between w-full">
               <div className="flex flex-col gap-3">
-                <p className="text-2xl font-medium">{movieName}</p>
+                <p className="text-2xl font-medium capitalize">{movieName}</p>
                 <p className="text-base text-[#8C8C93] font-normal">
                   {new Date(released).getFullYear()}
                   <span className="mx-1">·</span>

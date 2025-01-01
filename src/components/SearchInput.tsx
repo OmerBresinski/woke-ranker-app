@@ -24,7 +24,7 @@ export const SearchInput = ({
       onChange={onChange}
       maxLength={100}
       placeholder="Tell me of the movie you wish to judge but dare not ask"
-      className="pl-5 pr-20 py-2.5 focus:outline-none font-sans text-base rounded-full border border-[#D9D9D9] w-full placeholder:font-inria placeholder:text-[#B3B3B3] leading-4"
+      className="pl-5 pr-20 py-2.5 focus:outline-none font-sans text-base rounded-full border border-[#D9D9D9] w-full placeholder:font-inria placeholder:text-[#B3B3B3] leading-4 search-cancel:hidden"
     />
     {value && (
       <div

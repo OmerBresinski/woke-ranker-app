@@ -19,7 +19,7 @@ export const SearchInput = ({
 }: SearchInputProps) => (
   <div className={`relative ${isMobile ? "w-full" : "w-5/12"}`}>
     <input
-      type="text"
+      type="search"
       value={value}
       onChange={onChange}
       maxLength={100}

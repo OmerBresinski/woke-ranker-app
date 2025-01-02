@@ -1,4 +1,3 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
-  "destination": "https://api.example.com/:path*"
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
